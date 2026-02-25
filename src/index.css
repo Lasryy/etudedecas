@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #0D0D0D;
+  --color-panel: #1A1A1A;
+  --color-panel-alt: #222222;
+  --color-flame: #FF5722;
+  --color-flame-light: #FF7043;
+  --color-muted: #777777;
+  --color-edge: #2A2A2A;
+  --font-grotesk: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── 1. Smooth scroll ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── 2. Hide scrollbar (Chrome, Safari, Edge) ─── */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* ─── 3. Hide scrollbar (Firefox) ─── */
+* {
+  scrollbar-width: none;
+}
+
+body {
+  background-color: var(--color-dark);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-flame);
+  color: #000;
+}
+
+/* ─── CAD Grid ─── */
+.cad-grid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cad-grid::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    linear-gradient(rgba(255, 87, 34, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 87, 34, 0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: grid-drift 30s linear infinite;
+}
+
+.cad-grid::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 87, 34, 0.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 120px transparent,
+    0 0 0 121px rgba(255, 87, 34, 0.05),
+    0 0 0 240px transparent,
+    0 0 0 241px rgba(255, 87, 34, 0.04),
+    0 0 0 360px transparent,
+    0 0 0 361px rgba(255, 87, 34, 0.03);
+}
+
+@keyframes grid-drift {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(80px, 80px);
+  }
+}
+
+/* ─── Card hover ─── */
+.card-hover {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-flame) !important;
+}
+
+/* ─── 4. Tally overlay — no page shift ─── */
+body.tally-overlay-open {
+  overflow: hidden !important;
+  padding-right: 0 !important;
+}
+
+/* ─── 5. Tally iframe styling ─── */
+iframe[src*="tally.so"] {
+  border-radius: 24px !important;
+  background: #0D0D0D !important;
+}
