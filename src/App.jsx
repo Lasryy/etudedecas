@@ -60,7 +60,7 @@ const Hero = () => (
       </h1>
 
       <p className="text-muted text-lg md:text-xl max-w-2xl leading-relaxed">
-        Accompagnement de A à Z. Plusieurs technologies possibles. Financement possible.
+        Boostez votre entreprise avec l'impression 3D. Un accompagnement sur-mesure de A à Z, de l'initiation à la production.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 mt-6">
