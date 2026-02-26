@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import Lenis from '@studio-freight/lenis';
+import Lenis from 'lenis';
 import {
   ArrowUpRight, ArrowRight, Zap, PiggyBank, Shield, Leaf, Puzzle,
   Cog, MapPin, Building2, Video, GraduationCap,
