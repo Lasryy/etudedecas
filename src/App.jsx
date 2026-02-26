@@ -82,8 +82,11 @@ const Hero = () => (
         </button>
         <button
           onClick={() => {
-            const el = document.getElementById('programme');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (window.__lenis) {
+              window.__lenis.scrollTo('#programme', { duration: 1.2 });
+            } else {
+              document.getElementById('programme')?.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
           className="flex items-center justify-center gap-2 border border-white/20 bg-transparent text-white font-grotesk font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
         >
@@ -364,11 +367,17 @@ const Home = () => (
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
-    // Force scroll to top, bypassing Lenis smooth scroll
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    // Also reset Lenis internal position
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    const lenis = window.__lenis;
+    if (lenis) {
+      lenis.stop();
+      lenis.scrollTo(0, { immediate: true });
+      // Small delay to let the DOM settle, then restart
+      requestAnimationFrame(() => {
+        lenis.start();
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
   return null;
 };
@@ -381,13 +390,19 @@ const App = () => {
       smoothWheel: true,
     });
 
+    // Store globally so ScrollToTop and other components can use it
+    window.__lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
 
     requestAnimationFrame(raf);
-    return () => lenis.destroy();
+    return () => {
+      lenis.destroy();
+      window.__lenis = null;
+    };
   }, []);
 
   return (
