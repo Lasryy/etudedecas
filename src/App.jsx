@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import Lenis from '@studio-freight/lenis';
 import {
   ArrowUpRight, ArrowRight, Zap, PiggyBank, Shield, Leaf, Puzzle,
-  Cog, Layers, Sparkles, MapPin, Building2, Video,
+  Cog, MapPin, Building2, Video,
   BadgeCheck, Microscope, HardHat, Factory, Film,
   Wrench, CheckCircle, Users, Linkedin,
   Eye, Youtube, Facebook, Instagram,
@@ -20,9 +20,7 @@ const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-dark/80 backdrop-blur-md">
     <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-4">
       <Link to="/" className="flex items-center gap-3">
-        <div className="w-8 h-8 bg-flame rounded-lg flex items-center justify-center">
-          <Layers className="w-4 h-4 text-white" />
-        </div>
+        <img src="/favicon-32x32.png" alt="Logo" className="w-8 h-8 rounded-lg" />
         <span className="font-grotesk font-bold text-xl tracking-tight uppercase">La Nouvelle École</span>
         <span className="hidden md:inline-flex items-center gap-1.5 ml-3 text-xs font-medium text-flame bg-flame/10 border border-flame/20 rounded-full px-3 py-1">
           <BadgeCheck className="w-3.5 h-3.5" />
@@ -82,13 +80,16 @@ const Hero = () => (
           Obtenir un devis personnalisé
           <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
         </button>
-        <a
-          href="#programme"
-          className="flex items-center justify-center gap-2 border border-white/20 bg-transparent text-white font-grotesk font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
+        <button
+          onClick={() => {
+            const el = document.getElementById('programme');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="flex items-center justify-center gap-2 border border-white/20 bg-transparent text-white font-grotesk font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
         >
           Voir le programme
           <Eye className="w-4 h-4" strokeWidth={2.5} />
-        </a>
+        </button>
       </div>
     </div>
 
@@ -289,7 +290,7 @@ const FooterCTA = () => (
       <div className="flex flex-col gap-8 border-t border-white/5 pt-10 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-white font-bold text-lg">
-            <Layers className="w-5 h-5 text-flame" />
+            <img src="/favicon-32x32.png" alt="Logo" className="w-5 h-5 rounded" />
             La Nouvelle École
           </div>
           <p className="text-xs text-muted">© {new Date().getFullYear()} La Nouvelle École. Tous droits réservés.</p>
@@ -362,8 +363,12 @@ const Home = () => (
 /* ─────────────────── App ─────────────────── */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
+    // Force scroll to top, bypassing Lenis smooth scroll
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Also reset Lenis internal position
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
   return null;
 };
