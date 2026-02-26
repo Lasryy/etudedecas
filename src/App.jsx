@@ -357,6 +357,37 @@ const DummyPage = ({ title }) => {
   );
 };
 
+/* ─────────────────── 404 Page ─────────────────── */
+const NotFound = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-40 pb-24 px-6 flex flex-col items-center justify-center min-h-[70vh] text-center">
+      <div className="w-20 h-20 bg-flame/10 rounded-full flex items-center justify-center mb-8">
+        <Puzzle className="w-10 h-10 text-flame" />
+      </div>
+      <h1 className="font-grotesk font-black text-6xl md:text-8xl mb-6 text-white tracking-tight">
+        4<span className="text-flame">0</span>4
+      </h1>
+      <h2 className="font-grotesk font-bold text-2xl md:text-3xl mb-4 text-white">
+        Page Introuvable
+      </h2>
+      <p className="text-muted text-lg max-w-md mb-10">
+        Il semble que vous vous soyez perdu dans les méandres de l'impression 3D... Cette pièce n'existe pas ou a été déplacée.
+      </p>
+      <Link
+        to="/"
+        className="flex items-center gap-2 bg-flame text-white font-grotesk font-bold text-base px-8 py-3.5 rounded-full hover:bg-flame-light transition-all hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        Retourner à l'accueil
+        <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+      </Link>
+    </div>
+  );
+};
+
 /* ─────────────────── Home Page ─────────────────── */
 const Home = () => (
   <>
@@ -414,6 +445,7 @@ const App = () => {
             <Route path="/mentions-legales" element={<DummyPage title="Mentions légales" />} />
             <Route path="/confidentialite" element={<DummyPage title="Politique de confidentialité" />} />
             <Route path="/contact" element={<DummyPage title="Contactez-nous" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <FooterCTA />
