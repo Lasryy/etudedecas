@@ -84,10 +84,13 @@ const Hero = () => (
         </button>
         <button
           onClick={() => {
-            if (window.__lenis) {
-              window.__lenis.scrollTo('#programme', { duration: 1.2 });
-            } else {
-              document.getElementById('programme')?.scrollIntoView({ behavior: 'smooth' });
+            const el = document.getElementById('programme');
+            if (el) {
+              if (window.__lenis) {
+                window.__lenis.scrollTo(el, { duration: 1.2 });
+              } else {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
             }
           }}
           className="flex items-center justify-center gap-2 border border-white/20 bg-transparent text-white font-grotesk font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
@@ -369,16 +372,9 @@ const Home = () => (
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
-    const lenis = window.__lenis;
-    if (lenis) {
-      lenis.stop();
-      lenis.scrollTo(0, { immediate: true });
-      // Small delay to let the DOM settle, then restart
-      requestAnimationFrame(() => {
-        lenis.start();
-      });
-    } else {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
     }
   }, [pathname]);
   return null;
