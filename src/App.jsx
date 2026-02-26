@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import Lenis from '@studio-freight/lenis';
 import {
   ArrowUpRight, ArrowRight, Zap, PiggyBank, Shield, Leaf, Puzzle,
-  Cog, MapPin, Building2, Video,
+  Cog, MapPin, Building2, Video, GraduationCap,
   BadgeCheck, Microscope, HardHat, Factory, Film,
   Wrench, CheckCircle, Users, Linkedin,
   Eye, Youtube, Facebook, Instagram,
@@ -20,7 +20,9 @@ const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-dark/80 backdrop-blur-md">
     <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-4">
       <Link to="/" className="flex items-center gap-3">
-        <img src="/favicon-32x32.png" alt="Logo" className="w-8 h-8 rounded-lg" />
+        <div className="w-8 h-8 bg-flame rounded-full flex items-center justify-center">
+          <GraduationCap className="w-4 h-4 text-white" />
+        </div>
         <span className="font-grotesk font-bold text-xl tracking-tight uppercase">La Nouvelle École</span>
         <span className="hidden md:inline-flex items-center gap-1.5 ml-3 text-xs font-medium text-flame bg-flame/10 border border-flame/20 rounded-full px-3 py-1">
           <BadgeCheck className="w-3.5 h-3.5" />
@@ -293,7 +295,7 @@ const FooterCTA = () => (
       <div className="flex flex-col gap-8 border-t border-white/5 pt-10 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-white font-bold text-lg">
-            <img src="/favicon-32x32.png" alt="Logo" className="w-5 h-5 rounded" />
+            <GraduationCap className="w-5 h-5 text-flame" />
             La Nouvelle École
           </div>
           <p className="text-xs text-muted">© {new Date().getFullYear()} La Nouvelle École. Tous droits réservés.</p>
