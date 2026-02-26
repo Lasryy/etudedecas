@@ -1,18 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 import {
   ArrowUpRight, ArrowRight, Zap, PiggyBank, Shield, Leaf, Puzzle,
   Cog, Layers, Sparkles, MapPin, Building2, Video,
   BadgeCheck, Microscope, HardHat, Factory, Film,
   Wrench, CheckCircle, Users, Linkedin,
-  Download
+  Eye, Youtube, Facebook, Instagram,
 } from 'lucide-react';
+
+const TikTokIcon = ({ className }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.12-3.44-3.17-3.41-5.46.02-2.32 1.52-4.46 3.65-5.34 1.25-.53 2.66-.67 4-.41V15.7c-1.1-.06-2.23.27-3.04.99-.8.71-1.14 1.83-.87 2.87.27 1.05 1.14 1.83 2.2 1.94 1.08.11 2.22-.38 2.89-1.22.58-.72.88-1.63.88-2.54V.02h4.21z" />
+  </svg>
+);
 
 /* ─────────────────── Navbar ─────────────────── */
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-dark/80 backdrop-blur-md">
     <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-4">
-      <div className="flex items-center gap-3">
+      <Link to="/" className="flex items-center gap-3">
         <div className="w-8 h-8 bg-flame rounded-lg flex items-center justify-center">
           <Layers className="w-4 h-4 text-white" />
         </div>
@@ -21,7 +28,7 @@ const Navbar = () => (
           <BadgeCheck className="w-3.5 h-3.5" />
           Certifié Qualiopi
         </span>
-      </div>
+      </Link>
       <button
         data-tally-open="zxKEz0"
         data-tally-layout="modal"
@@ -80,7 +87,7 @@ const Hero = () => (
           className="flex items-center justify-center gap-2 border border-white/20 bg-transparent text-white font-grotesk font-bold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
         >
           Voir le programme
-          <Download className="w-4 h-4" strokeWidth={2.5} />
+          <Eye className="w-4 h-4" strokeWidth={2.5} />
         </a>
       </div>
     </div>
@@ -288,16 +295,25 @@ const FooterCTA = () => (
           <p className="text-xs text-muted">© {new Date().getFullYear()} La Nouvelle École. Tous droits réservés.</p>
         </div>
         <div className="flex gap-6 text-sm text-muted">
-          <a href="#" className="hover:text-flame transition-colors">Mentions légales</a>
-          <a href="#" className="hover:text-flame transition-colors">Confidentialité</a>
-          <a href="#" className="hover:text-flame transition-colors">Contact</a>
+          <Link to="/mentions-legales" className="hover:text-flame transition-colors">Mentions légales</Link>
+          <Link to="/confidentialite" className="hover:text-flame transition-colors">Confidentialité</Link>
+          <Link to="/contact" className="hover:text-flame transition-colors">Contact</Link>
         </div>
         <div className="flex gap-3">
-          <a href="#" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
+          <a href="https://www.linkedin.com/company/nouvelleecole/" target="_blank" rel="noopener noreferrer" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
             <Linkedin className="w-5 h-5" />
           </a>
-          <a href="#" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+          <a href="https://www.youtube.com/@la_nouvelle_ecole" target="_blank" rel="noopener noreferrer" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
+            <Youtube className="w-5 h-5" />
+          </a>
+          <a href="https://www.facebook.com/p/La-Nouvelle-%C3%89cole-Impression-3D-100086016202226/" target="_blank" rel="noopener noreferrer" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a href="https://www.instagram.com/nouvelle_ecole.fr/" target="_blank" rel="noopener noreferrer" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
+            <Instagram className="w-5 h-5" />
+          </a>
+          <a href="https://www.tiktok.com/@lanouvelleecole" target="_blank" rel="noopener noreferrer" className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 text-white hover:bg-flame transition-colors">
+            <TikTokIcon className="w-5 h-5" />
           </a>
         </div>
       </div>
@@ -305,7 +321,53 @@ const FooterCTA = () => (
   </footer>
 );
 
+/* ─────────────────── Dummy Pages ─────────────────── */
+const DummyPage = ({ title }) => {
+  // Scroll to top on mount
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-32 pb-24 px-6 md:px-12 lg:px-24 min-h-[60vh]">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="font-grotesk font-black text-4xl mb-8 text-white">{title}</h1>
+        <div className="text-muted space-y-6 text-lg">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ─────────────────── Home Page ─────────────────── */
+const Home = () => (
+  <>
+    <Hero />
+    <Secteurs />
+    <Benefits />
+    <ExpertiseSection />
+    <Modalites />
+  </>
+);
+
 /* ─────────────────── App ─────────────────── */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const App = () => {
   useEffect(() => {
     const lenis = new Lenis({
@@ -324,16 +386,21 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-
-      <Navbar />
-      <Hero />
-      <Secteurs />
-      <Benefits />
-      <ExpertiseSection />
-      <Modalites />
-      <FooterCTA />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/mentions-legales" element={<DummyPage title="Mentions légales" />} />
+            <Route path="/confidentialite" element={<DummyPage title="Politique de confidentialité" />} />
+            <Route path="/contact" element={<DummyPage title="Contactez-nous" />} />
+          </Routes>
+        </main>
+        <FooterCTA />
+      </div>
+    </Router>
   );
 };
 
