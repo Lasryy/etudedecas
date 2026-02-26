@@ -5,8 +5,8 @@
   --color-dark: #0D0D0D;
   --color-panel: #1A1A1A;
   --color-panel-alt: #222222;
-  --color-flame: #FF5722;
-  --color-flame-light: #FF7043;
+  --color-flame: #F2435C;
+  --color-flame-light: #F4667A;
   --color-muted: #777777;
   --color-edge: #2A2A2A;
   --font-grotesk: 'Space Grotesk', system-ui, sans-serif;
@@ -58,8 +58,8 @@ body {
   width: 200%;
   height: 200%;
   background-image:
-    linear-gradient(rgba(255, 87, 34, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 87, 34, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(242, 67, 92, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 67, 92, 0.06) 1px, transparent 1px);
   background-size: 80px 80px;
   animation: grid-drift 30s linear infinite;
 }
@@ -72,15 +72,15 @@ body {
   width: 900px;
   height: 900px;
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(255, 87, 34, 0.08);
+  border: 1px solid rgba(242, 67, 92, 0.08);
   border-radius: 50%;
   box-shadow:
     0 0 0 120px transparent,
-    0 0 0 121px rgba(255, 87, 34, 0.05),
+    0 0 0 121px rgba(242, 67, 92, 0.05),
     0 0 0 240px transparent,
-    0 0 0 241px rgba(255, 87, 34, 0.04),
+    0 0 0 241px rgba(242, 67, 92, 0.04),
     0 0 0 360px transparent,
-    0 0 0 361px rgba(255, 87, 34, 0.03);
+    0 0 0 361px rgba(242, 67, 92, 0.03);
 }
 
 @keyframes grid-drift {

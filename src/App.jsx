@@ -53,7 +53,7 @@ const Hero = () => (
 
       <h1 className="font-grotesk font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight">
         Formation{' '}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-flame to-orange-400">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-flame to-flame-light">
           Imprimante 3D
         </span>{' '}
         pour votre entreprise
@@ -70,7 +70,7 @@ const Hero = () => (
           data-tally-width="700"
           data-tally-overlay="1"
           data-tally-hide-title="1"
-          className="flex items-center justify-center gap-2 bg-flame text-white font-grotesk font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-flame/25 hover:bg-orange-600 hover:shadow-orange-500/40 transition-all cursor-pointer"
+          className="flex items-center justify-center gap-2 bg-flame text-white font-grotesk font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-flame/25 hover:bg-flame-light hover:shadow-flame/40 transition-all cursor-pointer"
         >
           Obtenir un devis personnalisé
           <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
@@ -256,7 +256,7 @@ const FooterCTA = () => (
           data-tally-width="700"
           data-tally-overlay="1"
           data-tally-hide-title="1"
-          className="flex items-center justify-center gap-3 bg-flame text-white font-grotesk font-bold text-lg px-10 py-4 rounded-full shadow-xl shadow-flame/20 hover:scale-105 hover:bg-orange-600 transition-all cursor-pointer mb-8"
+          className="flex items-center justify-center gap-3 bg-flame text-white font-grotesk font-bold text-lg px-10 py-4 rounded-full shadow-xl shadow-flame/20 hover:scale-105 hover:bg-flame-light transition-all cursor-pointer mb-8"
         >
           Obtenir un devis personnalisé
           <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
